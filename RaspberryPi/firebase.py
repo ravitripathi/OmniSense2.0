@@ -1,4 +1,6 @@
 import pyrebase
+import re
+import subprocess
 
 config = {
     "apiKey": "AIzaSyDKR0W6uIyA9dyW0oQ6VgWMfKUq3XVQ5_s",
@@ -8,9 +10,26 @@ config = {
     "serviceAccount": "omnisense-35e13-firebase-adminsdk-i03nj-648e08d862.json"
 }
 
-firebase =  pyrebase.initialize_app(config)
-
+firebase = pyrebase.initialize_app(config)
 db = firebase.database()
-db.child("activeUSB")
 
 
+def printDevices():
+    device_re = re.compile(
+        "Bus\s+(?P<bus>\d+)\s+Device\s+(?P<device>\d+).+ID\s(?P<id>\w+:\w+)\s(?P<tag>.+)$", re.I)
+    df = subprocess.check_output("lsusb", universal_newlines=True)
+    devices = []
+    for i in df.split('\n'):
+        if i:
+            info = device_re.match(i)
+            if info:
+                dinfo = info.groupdict()
+                dinfo['device'] = '/dev/bus/usb/%s/%s' % (
+                    dinfo.pop('bus'), dinfo.pop('device'))
+                devices.append(dinfo)
+    for i in devices:
+        print(i)
+        db.child("activeUSB").push(devices)
+
+
+printDevices()

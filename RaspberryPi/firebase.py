@@ -29,7 +29,8 @@ def printDevices():
                 devices.append(dinfo)
     for i in devices:
         print(i)
-        db.child("activeUSB").push(devices)
+        
+    db.child("activeUSB").set(devices)
 
 
 printDevices()

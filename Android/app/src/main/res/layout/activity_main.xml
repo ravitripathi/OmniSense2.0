@@ -6,4 +6,22 @@
     android:layout_height="match_parent"
     tools:context="xyz.ravitripathi.omnisense.MainActivity">
 
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:text="Currenty Active Devices"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text"
+        app:layout_constraintTop_toBottomOf="@id/text"  />
 </android.support.constraint.ConstraintLayout>

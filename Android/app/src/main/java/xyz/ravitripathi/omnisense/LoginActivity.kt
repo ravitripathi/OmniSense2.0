@@ -4,7 +4,6 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.util.Log
 import android.view.View
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -83,7 +82,7 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
                 alertDialog.setTitle("Connection Issues")
                 alertDialog.setMessage("Please check your internet connection and retry.")
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK"
-                ) { dialog, which -> dialog.dismiss() }
+                ) { dialog,  _ -> dialog.dismiss() }
                 alertDialog.show()
             }
         }

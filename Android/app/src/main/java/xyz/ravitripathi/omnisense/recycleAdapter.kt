@@ -22,7 +22,7 @@ class recycleAdapter(usbList: ArrayList<activeUSB>) : RecyclerView.Adapter<recyc
         fun bindStuff(item: activeUSB) {
             itemView.device.text = item.device
             itemView.devId.text = item.id
-            itemView.device.text = item.device
+            itemView.devTag.text = item.tag
         }
     }
 

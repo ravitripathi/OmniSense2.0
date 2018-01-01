@@ -1,6 +1,7 @@
 import pyrebase
 import re
 import subprocess
+import pyudev
 
 config = {
     "apiKey": "AIzaSyDKR0W6uIyA9dyW0oQ6VgWMfKUq3XVQ5_s",
@@ -31,6 +32,13 @@ def printDevices():
         print(i)
         
     db.child("activeUSB").set(devices)
+    
+    
+context = pyudev.Context()
+monitor = pyudev.Monitor.from_netlink(context)
+monitor.filter_by(subsystem='usb')
 
-
-printDevices()
+for device in iter(monitor.poll, None):
+    if device.action == 'add' or device.action == 'remove':
+        print(device.action+'{}'.format(device))
+        printDevices()

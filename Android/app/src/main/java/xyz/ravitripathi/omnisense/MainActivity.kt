@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         fireRef = fireDB.getReference("activeUSB")
         val usbList: ArrayList<activeUSB> = ArrayList()
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
-        recyclerView.adapter = recycleAdapter(usbList)
+        recyclerView.adapter = recycleAdapter(usbList,this)
 
         urlListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {

@@ -8,7 +8,7 @@ config = {
     "authDomain": "omnisense-35e13.firebaseapp.com",
     "databaseURL": "https://omnisense-35e13.firebaseio.com",
     "storageBucket": "omnisense-35e13.appspot.com",
-    "serviceAccount": "omnisense-35e13-firebase-adminsdk-i03nj-648e08d862.json"
+    "serviceAccount": "./omnisense-35e13-firebase-adminsdk-i03nj-648e08d862.json"
 }
 
 firebase = pyrebase.initialize_app(config)
@@ -28,9 +28,6 @@ def printDevices():
                 dinfo['device'] = '/dev/bus/usb/%s/%s' % (
                     dinfo.pop('bus'), dinfo.pop('device'))
                 devices.append(dinfo)
-    for i in devices:
-        print(i)
-        
     db.child("activeUSB").set(devices)
     
 

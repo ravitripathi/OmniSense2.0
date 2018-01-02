@@ -1,0 +1,6 @@
+this code can be accessed by sudo nano /etc/rc.local
+
+cd /home/pi/Desktop/OmniSense2.0/RaspberryPi/
+sudo python3 firebase.py & > /home/pi/Desktop/log.txt 2>&1
+exit 0
+
